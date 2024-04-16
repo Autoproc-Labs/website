@@ -1,0 +1,147 @@
+/* style.css */
+body, h1, h2, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  
+  .section-1 {
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .section-2 {
+    text-align: left;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 10%;
+  }
+  
+  .company-name, .learn-more {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  
+  .description {
+    font-size: 1em;
+    color: #555;
+    max-width: 600px;
+    line-height: 1.4; /* Adjust this value as needed, standard is about 1.2-1.6 */
+  }
+
+
+  .tagline {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 20px 0; /* Existing padding */
+  }
+  
+  .button {
+    margin-top: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: relative;
+  }
+  
+  .caret-down {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .button:hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+  
+  .column {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* ensures responsiveness */
+  }
+  
+  .column > div {
+    width: 48%; /* Adjust the width as needed */
+    margin-bottom: 20px; /* Space between columns */
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .link {
+    color: #333;
+    text-decoration: none;
+    margin-top: 5px;
+    display: inline-block;
+  }
+
+
+  /* Scroll smoothly to the sections */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .right-arrow {
+    fill: currentColor;
+    vertical-align: middle;
+  }
+
+.section {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Adjust as needed */
+    background-color: #f0f0f0; /* Just for visualization */
+}
+
+.content {
+    text-align: center;
+}
+
+.name-svg {
+    max-width: 500px;
+}
+
+.logo-svg {
+    width: 200px;
+    height: 200px;
+}
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.section-1, .section-2 {
+    flex: 1; /* This will make the sections grow and fill the available space */
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.75em;
+    background-color: #f0f0f0;
+    padding-top: 60%;
+}
