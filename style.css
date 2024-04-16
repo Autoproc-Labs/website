@@ -145,3 +145,42 @@ body, h1, h2, p, a {
     background-color: #f0f0f0;
     padding-top: 60%;
 }
+
+.learn-more-wrapper {
+  text-align: left;
+  margin-left: 20px; /* Or the padding you have on the columns for alignment */
+  padding-top: 20px; /* Optional, for some spacing above the title */
+}
+
+
+.learn-more {
+    /* Style for the LEARN MORE heading */
+    margin-bottom: 50px; /* Adjust as needed */
+  }
+  
+  .columns {
+    display: flex;
+    justify-content: space-between; /* This separates the two columns */
+    align-items: flex-start; /* Aligns items to the top */
+  }
+  
+  .column {
+    flex-basis: 48%; /* Adjust the percentage as necessary for your layout */
+    /* This sets the base size for each column but they will still flex with the available space */
+  }
+  
+  /* Responsive design to stack the columns on smaller screens */
+  @media (max-width: 768px) {
+    .columns {
+      flex-direction: column;
+    }
+  
+    .column {
+      flex-basis: 100%; /* Each column takes full width on smaller screens */
+      margin-bottom: 20px; /* Adds space between stacked columns */
+    }
+  }
+
+  .column {
+    max-width: 500px; /* or any other value */
+  }
