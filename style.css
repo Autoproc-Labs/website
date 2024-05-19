@@ -192,20 +192,191 @@ header {
 }
 
 .contact-us {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .contact-us a {
-  text-decoration: none;
-  color: #000;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
 }
 
 .contact-us a:hover {
-  background-color: #e0e0e0;
+    background-color: #e0e0e0;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label, input, textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="email"], textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', 'Rubik', sans-serif; /* Fallback to Rubik if Manrope isn't available */
+  line-height: 1.6;
+  color: #333;
+  background-color: #f0f0f0;
+}
+
+header {
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+
+h1, h2 {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666; /* A slightly lighter shade for the paragraph text */
+}
+
+a {
+  color: #007BFF; /* A bright color for links to stand out */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3; /* A darker shade for the hover state */
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  background-color: #f0f0f0;
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem; /* Slightly smaller font size on smaller screens */
+  }
+
+  h2 {
+      font-size: 1.25rem;
+  }
+
+  main {
+      margin: 1rem;
+  }
+
+  /* Adjust any other relevant styles for mobile responsiveness */
+}
+
+.back-arrow {
+  display: block;
+  position: absolute; /* Adjust if needed depending on your page layout */
+  top: 1rem; /* Distance from the top of the viewport */
+  left: 1rem; /* Distance from the left of the viewport */
+  width: 24px; /* Size of the back arrow icon */
+  height: 24px; /* Size of the back arrow icon */
+}
+
+/* If you're placing the back arrow within the header, you might not need absolute positioning */
+header {
+  position: relative; /* This is necessary if the back arrow uses absolute positioning */
+}
+
+/* Ensure the main content does not overlap with the back arrow */
+main {
+  position: relative;
+  z-index: 2; /* This should be higher than the back arrow's z-index if using absolute positioning */
+  padding-top: 2rem; /* This provides space for the back arrow */
 }
 
 /* Modal styles */
@@ -217,18 +388,54 @@ header {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
+  overflow: hidden; /* Disable scroll */
+  background-color: #f0f0f0; /* Black w/ opacity */
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  background-color: #f0f0f0;
+  margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border: 1px solid #f0f0f0; /* Change border color to #f0f0f0 */
+  width: 70%; /* Almost full width */
+  height: 70%; /* Almost full height */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-content h1, .modal-content h2, .modal-content p, .modal-content a {
+  font-family: 'Manrope', 'Rubik', sans-serif;
+  color: #333;
+}
+
+.modal-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.modal-content a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.modal-content a:hover {
+  color: #0056b3;
 }
 
 .close {
@@ -237,7 +444,6 @@ header {
   font-size: 28px;
   font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
   color: black;
@@ -245,27 +451,3 @@ header {
   cursor: pointer;
 }
 
-label, input, textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-input[type="text"], input[type="email"], textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
-}
