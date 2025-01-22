@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assembly Cell Nut Weld Anomaly Detection</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', 'Rubik', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-container:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Blog post container */
+        .blog-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.75em;
+            margin-top: 1.5em;
+            margin-bottom: 0.75em;
+            color: #2c3e50;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin-top: 1.2em;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        /* Lists styling */
+        ul {
+            margin-bottom: 1.2em;
+            padding-left: 2em;
+            color: #666;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        /* Images */
+        .image-container {
+            margin: 2em 0;
+            text-align: center;
+        }
+
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #ccc;
+            border-radius: 12px;
+            background-color: #f5f5f5;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Image captions */
+        .image-caption {
+            margin-top: 1em;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        /* Links styling */
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Strong text styling */
+        strong {
+            color: #333;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .blog-container {
+                max-width: 900px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-container {
+                padding: 20px 10px;
+            }
+
+            .image-container {
+                margin: 1.5em 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="logo-container">
+        <img src="../assets/icons/autoproc_name.svg" alt="Autoproc Logo">
+    </a>
+    <div class="blog-container">
+        <h1>Assembly Cell Nut Weld Anomaly Detection</h1>
+
+        <h2>Introduction</h2>
+        <p>Detecting anomalies in nut welds within an assembly cell is a critical task for ensuring product quality. We were tasked with creating a system that could analyze an image of a part and determine whether the nut weld was properly executed. The project presented several constraints, including limited budget, fixed camera placement, and no access to anomalous training data. Here, we describe the challenges faced, the methods implemented, and the solutions devised to develop a reliable anomaly detection system.</p>
+
+        <h2>Problem Overview</h2>
+        <p>The main requirement was to develop a system capable of detecting faulty nut welds using only images of correctly welded parts for training. Several constraints shaped our approach:</p>
+        <ul>
+            <li><strong>Budgetary Limitations:</strong> The camera had to be mounted far from the target area with the longest focal length lens available within budget.</li>
+            <li><strong>Fixed Lighting:</strong> We were unable to modify the lighting conditions within the assembly cell.</li>
+            <li><strong>Data Limitations:</strong> The process faults extremely rarely (on the order of 1 in 100,000 parts), so we only had access to images of correctly welded parts.</li>
+            <li><strong>Camera Stability:</strong> The camera's mounting was not permanent, and vibrations in the assembly cell caused minor positional shifts.</li>
+        </ul>
+        <p>To test our system, the plant's team manually created a dozen examples simulating anomalies based on past experiences.</p>
+
+        <h2>The Solution: Autoencoder-Based Anomaly Detection</h2>
+        
+        <h3>Step 1: Preprocessing with YOLO</h3>
+        <p>Given the constraints of camera placement, we trained a fine-tuned YOLO model to identify and crop out the region of interest: the nut weld. Despite the limitations in image quality due to distance and lighting, this step reliably isolated the nut weld in every captured frame.</p>
+        
+        <div class="image-container">
+            <img src="../assets/images/anomaly_detection_yolo.png" alt="YOLO model detecting and cropping nut weld regions" class="blog-image">
+            <p class="image-caption">YOLO model detecting and cropping the region of interest</p>
+        </div>
+
+        <h3>Step 2: Autoencoder Training</h3>
+        <p>With ~7,000 real-world samples confirmed to have no anomalies, we trained an autoencoder to reconstruct the cropped images of nut welds. The autoencoder architecture was chosen for its ability to learn a compressed representation of the data and highlight deviations from the norm.</p>
+        <ul>
+            <li><strong>Reconstruction Error:</strong> New inputs are compared to their reconstructions, and the error is calculated. If the error exceeds a predefined threshold, the part is flagged as an anomaly.</li>
+        </ul>
+
+        <div class="image-container">
+            <img src="../assets/images/anomaly_detection_reconstruction_error.png" alt="Autoencoder reconstruction comparison" class="blog-image">
+            <p class="image-caption">Comparison of original images and their error reconstructions</p>
+        </div>
+
+        <h3>Advanced Techniques: Gaussian Mixture Modeling</h3>
+        <p>To further improve anomaly detection, we modified the architecture to remove the decoder and applied a Gaussian Mixture Model (GMM) to the encoded feature space. This approach clustered the encoded representations of correctly welded parts and assigned log-likelihood values to new samples.</p>
+        <ul>
+            <li><strong>Cluster Separation:</strong> Correct samples formed a tight cluster in the feature space, while anomalies were distinctly separated, allowing for clear differentiation.</li>
+        </ul>
+
+        <div class="image-container">
+            <img src="../assets/images/anomaly_detection_gmm.png" alt="Gaussian Mixture Model clustering visualization" class="blog-image">
+            <p class="image-caption">Visualization log-likelihood using Gaussian Mixture Models</p>
+        </div>
+
+        <h2>Results and Insights</h2>
+        <p>The system's performance exceeded initial expectations given the constraints. Key outcomes include:</p>
+        <ul>
+            <li><strong>Reliable Anomaly Detection:</strong> The combination of reconstruction error and log-likelihood clustering accurately identified all test anomalies.</li>
+            <li><strong>Interpretable Outputs:</strong> Heatmaps generated by the autoencoder highlighted specific areas contributing to anomalies, aiding in root cause analysis.</li>
+            <li><strong>Robustness to Noise:</strong> Despite slight positional shifts in the camera due to vibrations, the YOLO model consistently cropped the nut weld accurately.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>By leveraging a combination of YOLO-based cropping, autoencoder training, and Gaussian Mixture Modeling, we developed a system capable of detecting nut weld anomalies with high reliability. This approach addresses the challenge of working with limited data, constrained budgets, and suboptimal imaging conditions. The methods outlined here can serve as a template for anomaly detection in other industrial applications with similar constraints.</p>
+    </div>
+</body>
+</html>

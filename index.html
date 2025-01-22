@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AUTOPROC - Visioning Efficiency, Engineering Progress</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
 </head>
 <body>
     <header>
@@ -16,35 +16,35 @@
     <div class="page-container">
         <div class="section section-1">
             <div class="content">
-                <img src="logo.svg" class="logo-svg" alt="Logo">
-                <img src="autoproc_name.svg" class="name-svg" alt="Name">
+                <img src="assets/icons/logo.svg" class="logo-svg" alt="Logo">
+                <img src="assets/icons/autoproc_name.svg" class="name-svg" alt="Name">
                 <div class="tagline">OPERATIONAL INTELLIGENCE UNLOCKED</div>
                 <p class="description">
                     Integrating AI with real-time camera and PLC data analysis, Autoproc targets the reduction of downtime and downtime events, boosting operational intelligence and elevating global enterprise resilience.
                 </p>          
                 <button class="button" aria-label="Scroll down" onclick="document.getElementById('learn-more').scrollIntoView();">
-                    <img src="down-arrow.svg" alt="Down arrow" class="caret-down" />
+                    <img src="assets/icons/down-arrow.svg" alt="Down arrow" class="caret-down" />
                 </button>      
             </div>
         </div>
 
         <div class="section section-2" id="learn-more">
             <div class="learn-more-wrapper">
-                <h2 class="learn-more">LEARN MORE</h2>
+                <h2 class="learn-more">DEPLOYED PROJECTS</h2>
             </div>
             <div class="columns">
               <div class="column">
-                <h3>Computer Vision</h3>
-                <p>Utilizing advanced Computer Vision, Autoproc proactively monitors manufacturing processes to prevent costly errors before they happen. This real-time oversight enables swift intervention, reducing waste and improving efficiency.</p>
-                <a href="javascript:void(0);" class="link" onclick="showModal('computerVisionModal')">
-                    <img src="right-arrow.svg" alt="Right arrow" class="right-arrow" />
+                <h3>Assembly Cell Nut Weld Analysis</h3>
+                <p>Discover how we developed an innovative anomaly detection system for nut welds using autoencoders and Gaussian Mixture Models. This project showcases our ability to create robust solutions under real-world constraints, including limited data availability and fixed camera positions.</p>
+                <a href="./pages/nut_weld_anomaly.html" class="link">
+                    <img src="assets/icons/right-arrow.svg" alt="Right arrow" class="right-arrow" />
                 </a>
               </div>
               <div class="column">
-                <h3>Data Science</h3>
-                <p>Our data science expertise turns complex PLC data into actionable insights, forecasting machine behavior and optimizing operational performance. By harnessing predictive analytics, we empower businesses to anticipate and mitigate issues.</p>
-                <a href="javascript:void(0);" class="link" onclick="showModal('dataScienceModal')">
-                    <img src="right-arrow.svg" alt="Right arrow" class="right-arrow" />
+                <h3>Automated Part Counting</h3>
+                <p>Explore our innovative approach to automating part counting on conveyor belts using fine-tuned YOLO models and synthetic data generation. Learn how we solved the challenge of counting occluded part pairs and created a scalable system supporting hundreds of unique parts.</p>
+                <a href="./pages/pipeline.html" class="link">
+                    <img src="assets/icons/right-arrow.svg" alt="Right arrow" class="right-arrow" />
                 </a>
               </div>
             </div>
@@ -72,42 +72,6 @@
         </div>
     </div>
 
-    <!-- Computer Vision Modal -->
-    <div id="computerVisionModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('computerVisionModal')">&times;</span>
-            <h1>Exploring Computer Vision at Autoproc</h1>
-            <p>Autoproc is exploring the vast potential of Computer Vision to refine manufacturing processes. Our exploratory technology seeks to proactively identify and address inefficiencies, setting the stage for smarter, more resilient operations.</p>
-            <h2>Real-Time Insights</h2>
-            <p>Our approach to Computer Vision involves developing algorithms capable of interpreting live visual data. By analyzing feeds from cameras strategically positioned along production lines, we aim to provide actionable insights that could significantly curtail waste and boost efficiency.</p>
-            <h2>Enhanced Part Tracking</h2>
-            <p>We are investigating methods for precise part counting, an essential component of inventory management and quality assurance. Our goal is to ensure consistent inventory levels and uphold quality by leveraging image recognition and tracking technologies.</p>
-            <h2>Mis-hit Detection Research</h2>
-            <p>Mitigating mis-hits in manufacturing is a complex challenge we are actively addressing through Computer Vision research. By studying the early indicators of process deviations, we hope to inform timely adjustments to protect machinery and maintain product standards.</p>
-            <h2>Anomaly Detection Exploration</h2>
-            <p>Identifying and understanding production anomalies forms a cornerstone of our Computer Vision research. Our work aims to deploy nuanced detection strategies for a broad spectrum of potential irregularities, supporting the consistent quality and reliability of the manufacturing process.</p>
-            <p>In the field of Computer Vision, our research is ongoing, pushing the boundaries of what's possible in automated oversight. At Autoproc, we are committed to advancing the nexus of technology and operational efficacy for industries around the globe.</p>
-        </div>
-    </div>
-
-    <!-- Data Science Modal -->
-    <div id="dataScienceModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('dataScienceModal')">&times;</span>
-            <h1>Advancing Data Science at Autoproc</h1>
-            <p>Autoproc's data science initiatives translate intricate PLC data streams into clear, actionable insights. Our advanced analytics pave the way for operational foresight, enhancing decision-making and process optimization.</p>
-            <h2>Deep Data Analysis</h2>
-            <p>Delving deep into the data, Autoproc's analytical models dissect complex information, uncovering patterns that forecast machine behavior. Our algorithms distill vast datasets into clarity, guiding operational refinements and performance tuning.</p>
-            <h2>Predictive Analytics</h2>
-            <p>Predictive analytics stands at the forefront of Autoproc's data science strategy. We extrapolate trends from historical and real-time data to forecast future conditions, enabling businesses to stay one step ahead of potential challenges.</p>
-            <h2>Operational Performance Optimization</h2>
-            <p>By harnessing the power of data science, Autoproc optimizes every facet of operational performance. From supply chain logistics to production efficiency, our insights drive continuous improvement and sustainable success.</p>
-            <h2>Anticipatory Issue Mitigation</h2>
-            <p>Autoproc empowers organizations to preemptively identify and address potential disruptions. Our data-driven solutions bolster preventive measures, ensuring smooth, uninterrupted business operations.</p>
-            <p>As Autoproc continues to explore the expansive possibilities of data science, we remain committed to equipping businesses with the knowledge to lead and innovate. Through our efforts, we envision a future where data is not just a resource but a beacon guiding the path to operational excellence.</p>
-        </div>
-    </div>
-
     <script>
         function showModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
@@ -130,7 +94,7 @@
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
 
-            const webhookURL = "https://discord.com/api/webhooks/1241771829874659359/OfLzOuj1HJLsdL_638Td1MEhMfJl5HcZlc2rIN-7Fq6NKdZ3jvMtS4Q6qPtVKqerHNdR"; // Replace with your Discord webhook URL
+            const webhookURL = "https://discord.com/api/webhooks/1241771829874659359/OfLzOuj1HJLsdL_638Td1MEhMfJl5HcZlc2rIN-7Fq6NKdZ3jvMtS4Q6qPtVKqerHNdR"; 
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
