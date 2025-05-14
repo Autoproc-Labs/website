@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="contact-us">
-            <a href="javascript:void(0);" onclick="showModal('contactFormModal')">Contact Us</a>
+            <a href="javascript:void(0);" onclick="showContactInfo()">Contact Us</a>
         </div>
     </header>
     <div class="page-container">
@@ -54,77 +54,10 @@
           </div>
     </div>
 
-    <!-- Contact Form Modal -->
-    <div id="contactFormModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('contactFormModal')">&times;</span>
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea><br>
-                <input type="submit" value="Send">
-            </form>
-            <div id="response" style="display:none;"></div>
-        </div>
-    </div>
-
     <script>
-        function showModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
+        function showContactInfo() {
+            alert("Contact us at contact@autoproclabs.com");
         }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            var modals = document.getElementsByClassName('modal');
-            for (var i = 0; i < modals.length; i++) {
-                if (event.target == modals[i]) {
-                    modals[i].style.display = 'none';
-                }
-            }
-        }
-
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const webhookURL = "https://discord.com/api/webhooks/1241771829874659359/OfLzOuj1HJLsdL_638Td1MEhMfJl5HcZlc2rIN-7Fq6NKdZ3jvMtS4Q6qPtVKqerHNdR"; 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            const payload = {
-                content: `**Name:** ${name}\n**Email:** ${email}\n**Message:** ${message}`
-            };
-
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('response').style.display = 'block';
-                    document.getElementById('response').innerHTML = 'Message sent successfully!';
-                    document.getElementById('contactForm').reset();
-                } else {
-                    document.getElementById('response').style.display = 'block';
-                    document.getElementById('response').innerHTML = 'Error sending message. Please try again.';
-                }
-            })
-            .catch(error => {
-                document.getElementById('response').style.display = 'block';
-                document.getElementById('response').innerHTML = 'Error sending message. Please try again.';
-            });
-        });
     </script>
 </body>
 </html>
